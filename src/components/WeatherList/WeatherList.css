@@ -1,0 +1,29 @@
+.weather-list {
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+  width: 600px;
+}
+
+.weather-list__item {
+  flex: 1;
+  margin: 0 10px;
+  /* border: 1px solid silver; */
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.weather-list__item-temp {
+  display: flex;
+  justify-content: space-around;
+}
+
+.weather-list__item-temp div:nth-child(1) {
+  padding-right: 10px;
+}
+
+.weather-list__item-temp div:nth-child(2) {
+  color: grey;
+}
