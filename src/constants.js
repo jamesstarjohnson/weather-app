@@ -1,5 +1,13 @@
-export const DESC = "DESC";
-export const ASC = "ASC";
+export const UKRAINE_CITY = {
+  city: 'Kiev',
+  country: 'Ukraine',
+  id: 703448,
+}
+export const GREENLAND_CITY = {
+  city: 'Qaanaaq',
+  country: 'Greenland',
+  id: 3831208,
+}
 export const INTERVAL_BETWEEN_REQUESTS = 30 * 60 * 1000; // 30 minutes in milliseconds
 export const MONDAY = "MONDAY";
 export const TUESDAY = "TUESDAY";

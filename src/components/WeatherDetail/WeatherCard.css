@@ -1,0 +1,36 @@
+.weather-card {
+  list-style-type: none;
+  display: flex;
+  align-items: flex-end;
+  height: 100%;  
+}
+
+.weather-card__item {
+  width: 75px;
+  margin: 0 5px;
+}
+
+.weather-card__temp {
+  text-align: center;
+  color: #737373;
+}
+
+.weather-card__overzero-cell {
+  background-color: gold;
+}
+
+.weather-card__subzero-cell {
+  display: flex;
+  align-items: flex-start;
+}
+
+.weather-card__subzero-temp {
+  background-color: #99ccff;
+  width: 100%;
+}
+
+.weather-card__time {
+  padding: 10px 0;
+  text-align: center;
+  color: #737373;
+}

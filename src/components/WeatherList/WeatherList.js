@@ -5,8 +5,9 @@ import './WeatherList.css';
 class WeatherList extends Component {
 
   static propType = {
-    data: PropTypes.array,
-    onDayChange: PropTypes.func,
+    data: PropTypes.array.isRequired,
+    onDayChange: PropTypes.func.isRequired,
+    currentDay: PropTypes.object.isRequired,
   }
 
   static defaultProps = {
@@ -14,15 +15,23 @@ class WeatherList extends Component {
   }
 
   renderTemp = temp => {
-    return temp > 0 ? `+${temp}` : `-${temp}`;
+    return temp > 0 ? `+${temp}` : temp;
   }
 
   renderList = () => {
-    return this.props.data.map((item, index) => {
+    const { onDayChange, currentDay, data } = this.props;
+    return data.map((item, index) => {
       return (
-        <li className="weather-list__item" key={index} onClick={() => this.props.onDayChange(item)}>
-          {item.weekDay}
-          <img src={item.iconUrl} />
+        <li 
+          className={`weather-list__item ${currentDay.weekDayTextId === item.weekDayTextId ? 'weather-list__item--active' : ''}`}
+          key={index} 
+          onClick={() => onDayChange({
+            weekDayTextId: item.weekDayTextId,
+            index
+          })}
+        >
+          <div className="weather-list__item-day">{item.weekDay}</div>
+          <div><img src={item.iconUrl} alt="weather" /></div>
           <div className="weather-list__item-temp">
             <div>{this.renderTemp(item.maxTemp)}</div>
             <div>{this.renderTemp(item.minTemp)}</div>

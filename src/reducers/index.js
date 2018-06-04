@@ -1,9 +1,11 @@
 import { combineReducers } from "redux";
 
 import weather from './weatherReducer';
-import pageInfo from './pageInfoReducer';
+import dayInfo from './dayInfoReducer';
+import city from './cityReducer';
 
 export default combineReducers({
   weather,
-  pageInfo,
+  dayInfo,
+  city,
 });

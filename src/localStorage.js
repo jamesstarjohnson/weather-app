@@ -6,9 +6,10 @@ export const loadPersistedWeather = () => {
   return JSON.parse(weatherData);
 }
 
-export const savePersistedWeather = data => {
+export const savePersistedWeather = (data, city) => {
   const weatherData = {
     data,
+    city,
     latestRequestTimestamp: Date.now(),
   }
   localStorage.setItem('weather_data', JSON.stringify(weatherData));

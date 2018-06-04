@@ -4,7 +4,7 @@ import {
 } from '../actions';
 
 export const INITIAL_STATE = {
-  data: [],
+  data: {},
   isLoading: false,
 }
 
