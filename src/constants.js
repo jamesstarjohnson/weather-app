@@ -38,8 +38,9 @@ export const weatherPriorityHash = {
   "shower rain": 4,
   "rain": 5,
   "thunderstorm": 6,
-  "snow": 7,
-  "mist": 8,
+  "light snow": 7,
+  "snow": 8,
+  "mist": 9,
 }
 
 export const iconUrls = {
@@ -50,6 +51,7 @@ export const iconUrls = {
   "shower rain": 'http://openweathermap.org/img/w/09d.png',
   "rain": 'http://openweathermap.org/img/w/10d.png',
   "thunderstorm": 'http://openweathermap.org/img/w/11d.png',
+  "light snow": 'http://openweathermap.org/img/w/13d.png',
   "snow": 'http://openweathermap.org/img/w/13d.png',
   "mist": 'http://openweathermap.org/img/w/50d.png',
 }

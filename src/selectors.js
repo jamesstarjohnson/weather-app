@@ -1,6 +1,17 @@
 import { days, iconUrls } from './constants';
+
+const getForcastDays = () => {
+  let today = new Date();
+  const allDays = [1,2,3,4,5].map(() => {
+    const day = today.getDay();
+    today = new Date(today.setHours(24)); // getting the following day
+    return days[day];
+  });
+  return allDays;
+}
+
 export const getWeatherList = state => {
-  return days.map(item => {
+  return getForcastDays().map(item => {
     const value = state.weather.data[item];
     if(!value) {
       return undefined;
