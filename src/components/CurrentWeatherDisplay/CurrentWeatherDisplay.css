@@ -1,0 +1,19 @@
+.current-weather {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.current-weather__icon {
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+}
+
+.current-weather__icon img {
+  transform: scale(2);
+}
+
+.current-weather__temp {
+  font-size: 70px;
+  color: #737373;
+}

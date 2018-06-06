@@ -14,7 +14,7 @@ export default (state = INITIAL_STATE, action) => {
     case SAVE_CITY:
       return payload
     case TOGGLE_CITY:
-      return state === UKRAINE_CITY ? GREENLAND_CITY : UKRAINE_CITY;
+      return state.city === UKRAINE_CITY.city ? GREENLAND_CITY : UKRAINE_CITY;
     default:
       return state;
   }

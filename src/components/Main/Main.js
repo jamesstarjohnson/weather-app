@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { fetchWeather, backgroundWeatherUpdate, changeDay, toggleCity } from '../../actions';
 import { getWeatherList, getCurrentWeather, getCurrentDayWeatherList } from '../../selectors';
 import WeahterList from '../WeatherList';
-import CurrentWeather from '../CurrentWeather';
+import WeatherHeader from '../WeatherHeader';
 import WeatherDetail from '../WeatherDetail';
 import './Main.css';
 
@@ -16,6 +16,7 @@ class Main extends Component {
     currentDayWeather: PropTypes.array.isRequired,
     currentCity: PropTypes.object.isRequired,
     toggleCity: PropTypes.func.isRequired,
+    currentWeather: PropTypes.object.isRequired,
     isLoading: PropTypes.bool.isRequired,
   }
 
@@ -50,7 +51,7 @@ class Main extends Component {
     }
     return (
       <div className="weather-app-container">
-        <CurrentWeather 
+        <WeatherHeader 
           temp={currentWeather.temp}
           icon={currentWeather.icon}
           description={currentWeather.description}

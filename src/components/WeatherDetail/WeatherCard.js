@@ -6,7 +6,6 @@ class WeatherCard extends Component {
 
   static propType = {
     currentDayWeather: PropTypes.array.isRequired,
-    renderTemp: PropTypes.func.isRequired,   
   }
 
   renderTemp = temp => {
