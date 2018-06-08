@@ -1,4 +1,4 @@
-import { days, iconUrls } from './constants';
+import { days } from './constants';
 
 const getForcastDays = () => {
   let today = new Date();
@@ -53,7 +53,7 @@ export const getCurrentWeather = state => {
   }, {value: Infinity, item: undefined});
   return !currentItem ? {} : {
     temp: Math.round(currentItem.item.temp),
-    icon: iconUrls[currentItem.item.description],
+    icon: currentItem.item.iconUrl,
     description: currentItem.item.description,
   };
 }

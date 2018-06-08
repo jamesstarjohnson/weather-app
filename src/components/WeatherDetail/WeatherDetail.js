@@ -27,8 +27,8 @@ class WeatherDetail extends Component {
     const { data, currentDayWeather } = this.props;
     return data.map((item, index) => {
       return (
-        <li 
-          className="weather-detail__card" key={index}
+        <li
+          className="weather-detail__list-item" key={index}
         >
           <WeatherCard 
             currentDayWeather={currentDayWeather}
@@ -40,8 +40,8 @@ class WeatherDetail extends Component {
 
   render() {
     return (
-      <div className="weather-container">
-        <ul className="weather-detail" style={this.getStyle()}>
+      <div className="weather-detail">
+        <ul className="weather-detail__list" style={this.getStyle()}>
           {this.renderList()}
         </ul>
       </div>

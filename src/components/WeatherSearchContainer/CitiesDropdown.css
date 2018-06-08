@@ -1,0 +1,48 @@
+.cities-dropdown {
+  position: relative;
+}
+
+.cities-dropdown__list {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  list-style-type: none;
+  z-index: 1;
+  background-color: white;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  box-shadow: 0px 31px 49px 10px rgba(140,140,140,1);
+}
+
+.cities-dropdown__item {
+  font-size: 18px;
+  display: flex;
+  align-items: flex-end;
+  padding: 10px 5px;
+}
+
+.cities-dropdown__item--active {
+  background-color:  #0073e6;
+}
+
+.cities-dropdown__item--active .cities-dropdown__city, 
+.cities-dropdown__item--active .cities-dropdown__country {
+  color: white;
+}
+
+.cities-dropdown__item:nth-child(5) {
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.cities-dropdown__city {
+  font-size: 1em;
+  margin-right: 5px;
+  color: #737373;
+}
+
+.cities-dropdown__country {
+  font-size: 0.8em;
+  color: #8c8c8c;
+}

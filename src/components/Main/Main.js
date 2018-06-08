@@ -6,6 +6,7 @@ import { getWeatherList, getCurrentWeather, getCurrentDayWeatherList } from '../
 import WeahterList from '../WeatherList';
 import WeatherHeader from '../WeatherHeader';
 import WeatherDetail from '../WeatherDetail';
+import WeatherSearchContainer from '../WeatherSearchContainer';
 import './Main.css';
 
 class Main extends Component {
@@ -51,6 +52,7 @@ class Main extends Component {
     }
     return (
       <div className="weather-app-container">
+        <WeatherSearchContainer />
         <WeatherHeader 
           temp={currentWeather.temp}
           icon={currentWeather.icon}
