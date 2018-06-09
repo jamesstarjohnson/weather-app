@@ -55,6 +55,7 @@ export const iconUrls = {
   "few clouds": getUrl('02d'),
   "scattered clouds": getUrl('03d'),
   "broken clouds": getUrl('04d'),
+  "overcast clouds": getUrl('04d'),
   "shower rain": getUrl('09d'),
   "rain": getUrl('10d'),
   "thunderstorm": getUrl('11d'),

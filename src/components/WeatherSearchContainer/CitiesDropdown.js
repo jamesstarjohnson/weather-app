@@ -1,25 +1,32 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'
 import cn from 'classnames';
+import enhanceWithClickOutside from 'react-click-outside';
 import './CitiesDropdown.css';
 
 class CitiesDropdown extends Component {
   static propType = {
     cities: PropTypes.array.isRequired,
-    onSelect: PropTypes.func.isRequired,
+    onItemSelect: PropTypes.func.isRequired,
     getCountry: PropTypes.func.isRequired,
+    onDropdownClose: PropTypes.func.isRequired,
   }
 
   state = {
     position: 0,
   }
 
+  handleClickOutside() {
+    this.props.onDropdownClose();
+  }
+
   handleKeyDown = event => {
-    if(event.code === 'Backspace' || event.code === 'ArrowLeft' || event.code === 'ArrowRight') {
-      return;
+    if(['Enter', 'ArrowUp', 'ArrowDown', 'Escape'].includes(event.code)) {
+      event.preventDefault();
+      event.stopPropagation();
     }
     if(event.code === 'Enter') {
-      this.props.onSelect(this.props.cities[this.state.position]);
+      this.props.onItemSelect(this.props.cities[this.state.position]);
     }
     if(event.code === 'ArrowUp') {
       this.setState(prev => {
@@ -32,11 +39,10 @@ class CitiesDropdown extends Component {
         return {
           position: prev.position === 4 ? 0 : prev.position + 1,
         }
-      })
+      });
+    } else if (event.code === 'Escape') {
+      this.props.onDropdownClose();
     }
-    event.preventDefault()
-    event.stopPropagation();
-    console.log(event.code);
   }
 
   componentWillUnmount() {
@@ -48,7 +54,7 @@ class CitiesDropdown extends Component {
   }
 
   render() {
-    const { cities, onSelect, getCountry } = this.props;
+    const { cities, onItemSelect, getCountry } = this.props;
     return (
       <div className="cities-dropdown">
         <ul className="cities-dropdown__list">
@@ -56,7 +62,7 @@ class CitiesDropdown extends Component {
             return (
               <li 
                 key={item.id} 
-                onClick={() => onSelect(item)} 
+                onClick={() => onItemSelect(item)} 
                 className={cn('cities-dropdown__item', { 'cities-dropdown__item--active': this.state.position === index })}>
                 <div className="cities-dropdown__city">{`${item.city},`}</div>
                 <div className="cities-dropdown__country">{getCountry(item.country).name}</div>
@@ -69,4 +75,4 @@ class CitiesDropdown extends Component {
   }
 }
 
-export default CitiesDropdown;
+export default enhanceWithClickOutside(CitiesDropdown);

@@ -9,6 +9,7 @@
     "classnames": "^2.2.5",
     "lodash": "^4.17.10",
     "react": "^16.4.0",
+    "react-click-outside": "^3.0.1",
     "react-dom": "^16.4.0",
     "react-redux": "^5.0.7",
     "react-scripts": "1.1.4",

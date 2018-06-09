@@ -1,26 +1,29 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types'
 import WeatherSearch from './WeatherSearch';
+import CitiesDropdown from './CitiesDropdown';
+import { getCountry } from  '../../helpers';
 import './WeatherSearchContainer.css';
 
 class WeatherSearchContainer extends Component {
-  static propType = {
-  }
-
   state = {
     cities: [],
+    isDropdownOpen: false,
     isLoading: false,
   }
 
-  handleSelect = item => {
+  handleItemSelect = item => {
     console.log(item);
-    this.setState({cities: []});
+    this.setState({cities: [], isDropdownOpen: false});
+  }
+
+  handleDropdownClose = () => {
+    this.setState({ isDropdownOpen: false });
   }
 
   handleSearch = value => {
     if(value.length < 3) {
       if(!!this.state.cities.length) {
-        this.setState({cities: []});
+        this.setState({cities: [], isDropdownOpen: false});
       }
       return;
     }
@@ -35,7 +38,7 @@ class WeatherSearchContainer extends Component {
           country: item.country,
         }
       });
-      this.setState({ cities, isLoading: false });
+      this.setState({ cities, isLoading: false, isDropdownOpen: !!cities.length });
     });
   }
 
@@ -43,12 +46,15 @@ class WeatherSearchContainer extends Component {
     return (
       <div className="weather-container">
         <WeatherSearch
-          isDropdownOpen={!!this.state.cities.length}
           isLoading={this.state.isLoading} 
-          cities={this.state.cities} 
           onSearch={this.handleSearch}
-          onSelect={this.handleSelect}
         />
+        {this.state.isDropdownOpen && <CitiesDropdown
+          onItemSelect={this.handleItemSelect}        
+          onDropdownClose={this.handleDropdownClose}
+          cities={this.state.cities}
+          getCountry={getCountry}
+        />}
       </div>
     );
   }
