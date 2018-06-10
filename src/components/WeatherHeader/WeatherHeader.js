@@ -25,7 +25,7 @@ class WeatherHeader extends Component {
         <CurrentCityDisplay cityName={cityName} countryName={countryName} />
         <Spinner
           className="weather-header__spinner"
-          render={<CurrentWeatherDisplay temp={temp} icon={icon}  />}
+          render={() => <CurrentWeatherDisplay temp={temp} icon={icon}  />}
           isLoading={isLoading}
           size="2x"
           color="#999999"

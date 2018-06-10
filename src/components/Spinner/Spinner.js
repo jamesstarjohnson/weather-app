@@ -7,7 +7,7 @@ import './Spinner.css';
 
 class Spinner extends Component {
   static propType = {
-    render: PropTypes.element,
+    render: PropTypes.func,
     isLoading: PropTypes.bool.isRequired,
     containerClassName: PropTypes.string,
     className: PropTypes.string,
@@ -34,7 +34,7 @@ class Spinner extends Component {
             {...other}
           />
         </div>
-      : (!!render ? <div>{render}</div> : null)
+      : (!!render ? render() : null)
     );
   }
 }

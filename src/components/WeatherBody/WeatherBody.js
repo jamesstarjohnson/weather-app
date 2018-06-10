@@ -57,7 +57,7 @@ class WeatherBody extends Component {
     return (
       <Spinner
         containerClassName="weather-body__spinner"
-        render={this.renderComponent()}
+        render={this.renderComponent}
         isLoading={this.props.isLoading}
         size="4x"
         color="#bfbfbf"
