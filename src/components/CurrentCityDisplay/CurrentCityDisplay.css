@@ -1,0 +1,17 @@
+.current-city-display {
+  align-items: center;
+}
+
+.current-city-display__city-name {
+  font-size: 40px;
+  color: #737373;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 370px;
+  overflow: hidden;
+}
+
+.current-city-display__country-name {
+  color: #999999;
+  font-size: 20px;
+}

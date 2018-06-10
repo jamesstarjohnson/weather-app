@@ -1,12 +1,13 @@
 .weather-header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   width: 600px;
+  height: 100px;
+  box-sizing: border-box;
   padding: 10px 0;
 }
 
-.weather-header__city {
-  display: flex;
-  align-items: center;
-  cursor: pointer;
+.weather-header__spinner {
+  margin: 0 50px;
 }

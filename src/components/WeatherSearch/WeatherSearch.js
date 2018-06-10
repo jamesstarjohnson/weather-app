@@ -1,29 +1,22 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'
 import cn from 'classnames';
-import { debounce } from 'lodash'; 
-import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import faSpinner from '@fortawesome/fontawesome-free-solid/faSpinner';
+import Spinner from '../Spinner';
 import './WeatherSearch.css';
 
 class WeatherSearch extends Component {
   static propType = {
-    onSearch: PropTypes.func.isRequired,
+    onChange: PropTypes.func.isRequired,
     isLoading: PropTypes.bool.isRequired,
+    value: PropTypes.string.isRequired,
   }
 
   state = {
-    value: '',
     focused: false,
   }
 
-  requestData = debounce(() => {
-    const value = this.state.value;
-    this.props.onSearch(value);
-  }, 200);
-
   handleChange = event => {
-    this.setState({value: event.target.value}, this.requestData);
+    this.props.onChange(event.target.value);
   }
 
   handleFocus = () => {
@@ -41,13 +34,14 @@ class WeatherSearch extends Component {
             className="weather-search__input"
             onFocus={this.handleFocus}
             onBlur={this.handleBlur}
-            value={this.state.value} 
+            value={this.props.value} 
             onChange={this.handleChange}
             placeholder="Search City" 
           />
-          {this.props.isLoading && <div className="weather-search__spinner">
-            <FontAwesomeIcon icon={faSpinner} className="weather-search__spinner-speed" spin />
-          </div>}
+          <Spinner
+            isLoading={this.props.isLoading}
+            containerClassName="weather-search__spinner"
+          />
         </div>
     );
   }

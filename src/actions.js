@@ -5,7 +5,6 @@ import { INTERVAL_BETWEEN_REQUESTS } from './constants';
 
 export const RECEIVE_WEATHER = 'RECEIVE_WEATHER';
 export const CHANGE_DAY = 'CHANGE_DAY';
-export const TOGGLE_CITY = 'TOGGLE_CITY';
 export const SAVE_CITY = 'SAVE_CITY';
 export const FETCH_WEATHER = 'FETCH_WEATHER';
 
@@ -27,12 +26,6 @@ export const saveCity = city => {
   return {
     type: SAVE_CITY,
     payload: city,
-  }
-}
-
-export const toggleCity = () => {
-  return {
-    type: TOGGLE_CITY,
   }
 }
 

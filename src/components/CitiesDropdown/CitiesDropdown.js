@@ -8,7 +8,7 @@ class CitiesDropdown extends Component {
   static propType = {
     cities: PropTypes.array.isRequired,
     onItemSelect: PropTypes.func.isRequired,
-    getCountry: PropTypes.func.isRequired,
+    getCountryName: PropTypes.func.isRequired,
     onDropdownClose: PropTypes.func.isRequired,
   }
 
@@ -26,7 +26,7 @@ class CitiesDropdown extends Component {
       event.stopPropagation();
     }
     if(event.code === 'Enter') {
-      this.props.onItemSelect(this.props.cities[this.state.position]);
+      this.handleItemSelect(this.props.cities[this.state.position]);
     }
     if(event.code === 'ArrowUp') {
       this.setState(prev => {
@@ -53,8 +53,13 @@ class CitiesDropdown extends Component {
     document.addEventListener('keydown', this.handleKeyDown)
   }
 
+  handleItemSelect = item => {
+    const coountryName = this.props.getCountryName(item.country);
+    this.props.onItemSelect({...item, country: coountryName});
+  }
+
   render() {
-    const { cities, onItemSelect, getCountry } = this.props;
+    const { cities, getCountryName } = this.props;
     return (
       <div className="cities-dropdown">
         <ul className="cities-dropdown__list">
@@ -62,10 +67,10 @@ class CitiesDropdown extends Component {
             return (
               <li 
                 key={item.id} 
-                onClick={() => onItemSelect(item)} 
+                onClick={() => this.handleItemSelect(item)} 
                 className={cn('cities-dropdown__item', { 'cities-dropdown__item--active': this.state.position === index })}>
-                <div className="cities-dropdown__city">{`${item.city},`}</div>
-                <div className="cities-dropdown__country">{getCountry(item.country).name}</div>
+                  <div className="cities-dropdown__city">{`${item.city},`}</div>
+                  <div className="cities-dropdown__country">{getCountryName(item.country)}</div>
               </li>
             )
           })}

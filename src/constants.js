@@ -6,13 +6,7 @@ export const UKRAINE_CITY = {
   country: 'Ukraine',
   id: 703448,
 }
-export const GREENLAND_CITY = {
-  city: 'Qaanaaq',
-  country: 'Greenland',
-  id: 3831208,
-}
 
-// console.log(countriesList["UA"]);
 
 export const INTERVAL_BETWEEN_REQUESTS = 30 * 60 * 1000; // 30 minutes in milliseconds
 export const MONDAY = "MONDAY";

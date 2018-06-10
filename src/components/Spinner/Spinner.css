@@ -1,0 +1,9 @@
+.weather-spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.weather-spinner__speed {
+  animation-duration: .5s;
+}

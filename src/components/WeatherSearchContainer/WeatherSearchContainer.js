@@ -1,34 +1,51 @@
 import React, { Component } from 'react';
-import WeatherSearch from './WeatherSearch';
-import CitiesDropdown from './CitiesDropdown';
-import { getCountry } from  '../../helpers';
-import './WeatherSearchContainer.css';
+import { debounce } from 'lodash';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types'
+import { saveCity } from '../../actions';
+import WeatherSearch from '../WeatherSearch';
+import CitiesDropdown from '../CitiesDropdown';
+import { getCountryName } from  '../../helpers';
 
 class WeatherSearchContainer extends Component {
+  static propTypes = {
+    saveCity: PropTypes.func.isRequired,
+  }
+
   state = {
+    cityName: '',
     cities: [],
     isDropdownOpen: false,
     isLoading: false,
   }
 
-  handleItemSelect = item => {
-    console.log(item);
-    this.setState({cities: [], isDropdownOpen: false});
+  handleCityNameChange = value => {
+    this.setState({ cityName: value }, this.handleSearch);
+  }
+
+  handleCitySelect = value => {
+    console.log(value);
+    this.setState({
+      cities: [], 
+      isDropdownOpen: false, 
+      cityName: value.city
+    }, () => this.props.saveCity(value));
   }
 
   handleDropdownClose = () => {
     this.setState({ isDropdownOpen: false });
   }
 
-  handleSearch = value => {
-    if(value.length < 3) {
+  handleSearch =  debounce(() => {
+    const cityName = this.state.cityName;
+    if(cityName.length < 3) {
       if(!!this.state.cities.length) {
         this.setState({cities: [], isDropdownOpen: false});
       }
       return;
     }
     this.setState({ isLoading: true });
-    fetch(`http://localhost:3001/cities?name_like=${value}&_limit=5`)
+    fetch(`http://localhost:3001/cities?name_like=${cityName}&_limit=5`)
     .then((resp) => resp.json())
     .then((resp) => {
       const cities = resp.map(item => {
@@ -38,26 +55,31 @@ class WeatherSearchContainer extends Component {
           country: item.country,
         }
       });
-      this.setState({ cities, isLoading: false, isDropdownOpen: !!cities.length });
+      this.setState({ 
+        cities, 
+        isLoading: false, 
+        isDropdownOpen: !!cities.length 
+      });
     });
-  }
+  }, 200);
 
   render() {
     return (
       <div className="weather-container">
         <WeatherSearch
+          value={this.state.cityName}
           isLoading={this.state.isLoading} 
-          onSearch={this.handleSearch}
+          onChange={this.handleCityNameChange}
         />
         {this.state.isDropdownOpen && <CitiesDropdown
-          onItemSelect={this.handleItemSelect}        
+          onItemSelect={this.handleCitySelect}        
           onDropdownClose={this.handleDropdownClose}
           cities={this.state.cities}
-          getCountry={getCountry}
+          getCountryName={getCountryName}
         />}
       </div>
     );
   }
 }
 
-export default WeatherSearchContainer;
+export default connect(null, { saveCity })(WeatherSearchContainer);

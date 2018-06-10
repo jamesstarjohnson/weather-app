@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import CityButton from '../CityButton';
+import { connect } from 'react-redux';
+import { getCurrentWeather } from '../../selectors';
 import CurrentWeatherDisplay from '../CurrentWeatherDisplay';
+import CurrentCityDisplay from '../CurrentCityDisplay';
+import Spinner from '../Spinner';
 import './WeatherHeader.css';
 
 class WeatherHeader extends Component {
@@ -10,33 +13,37 @@ class WeatherHeader extends Component {
     temp: PropTypes.number.isRequired,
     icon: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
-    wind: PropTypes.number.isRequired,
-    currentCity: PropTypes.object.isRequired,
-    onToggleCity: PropTypes.func.isRequired,
+    cityName: PropTypes.string.isRequired,
+    countryName: PropTypes.string.isRequired,
+    isLoading: PropTypes.bool.isRequired,
   }
 
   render() {
-    const { icon, temp, currentCity, onToggleCity } = this.props;
+    const { icon, temp, cityName, countryName, isLoading } = this.props;
     return (
       <div className="weather-header">
-        <div className="weather-header__city">
-          <CityButton
-            onToggleCity={onToggleCity}
-            currentCity={currentCity}
-            cityName="Kiev"
-            countryName="Ukraine"
-          />
-          <CityButton
-            onToggleCity={onToggleCity}
-            currentCity={currentCity}
-            cityName="Qaanaaq"
-            countryName="Greenland"
-          />
-        </div>
-        <CurrentWeatherDisplay temp={temp} icon={icon}  />
+        <CurrentCityDisplay cityName={cityName} countryName={countryName} />
+        <Spinner
+          className="weather-header__spinner"
+          render={<CurrentWeatherDisplay temp={temp} icon={icon}  />}
+          isLoading={isLoading}
+          size="2x"
+          color="#999999"
+        />
       </div>
     );
   }
 }
+const mapStateToProps = state => {
+  const currentWeather = getCurrentWeather(state);
+  return {
+    temp: currentWeather.temp,
+    icon: currentWeather.icon,
+    description: currentWeather.description,
+    cityName: state.city.city,
+    countryName: state.city.country,
+    isLoading: state.weather.isLoading,
+  }
+}
 
-export default WeatherHeader;
+export default connect(mapStateToProps)(WeatherHeader);

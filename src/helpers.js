@@ -20,8 +20,11 @@ export const shouldRequestWeather = (weatherData, isCityChanged) => {
   return true;
 }
 
-export const getCountry = (countryKey) => {
-  return countries[countryKey];
+export const getCountryName = countryKey => {
+  if(!countryKey) {
+    return '';
+  }
+  return countries[countryKey].name;
 }
 
 export const getCurrentDay = () => {

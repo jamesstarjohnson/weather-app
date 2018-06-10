@@ -1,12 +1,11 @@
 .current-weather {
   display: flex;
-  justify-content: flex-start;
+  align-items: center;
 }
 
 .current-weather__icon {
   display: flex;
   align-items: center;
-  margin-right: 20px;
 }
 
 .current-weather__icon img {

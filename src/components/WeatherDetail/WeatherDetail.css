@@ -1,12 +1,13 @@
 .weather-detail {
   width: 600px;
+  height: 200px;
   overflow: hidden;  
 }
 
 .weather-detail__list {
   width: 600px;
   overflow: hidden;
-  height: 200px;
+  height: 100%;
   list-style-type: none;
   transition: transform .5s;
 }
