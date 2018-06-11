@@ -39,7 +39,6 @@ export const fetchWeather = isCityChanged => (dispatch, getState) => {
   if(shouldRequestWeather(loadedData, isCityChanged)) {
     dispatch({ type: FETCH_WEATHER });
     fetchData(city.id).then(data => {
-      console.log(data);
       const weather = convertToState(data);
       savePersistedWeather(weather, city);
       dispatch(receiveWeather(weather));

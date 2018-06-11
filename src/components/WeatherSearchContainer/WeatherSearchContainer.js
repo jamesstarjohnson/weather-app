@@ -24,7 +24,6 @@ class WeatherSearchContainer extends Component {
   }
 
   handleCitySelect = value => {
-    console.log(value);
     this.setState({
       cities: [], 
       isDropdownOpen: false, 
