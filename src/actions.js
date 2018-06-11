@@ -1,6 +1,6 @@
 import fetchData from './api';
 import { loadPersistedWeather, savePersistedWeather } from './localStorage';
-import { shouldRequestWeather, convertToState } from './helpers';
+import { shouldRequestWeather, convertToState, getCurrentDay } from './helpers';
 import { INTERVAL_BETWEEN_REQUESTS } from './constants';
 
 export const RECEIVE_WEATHER = 'RECEIVE_WEATHER';
@@ -8,11 +8,9 @@ export const CHANGE_DAY = 'CHANGE_DAY';
 export const SAVE_CITY = 'SAVE_CITY';
 export const FETCH_WEATHER = 'FETCH_WEATHER';
 
-export const receiveWeather = weather => {
-  return {
-    type: RECEIVE_WEATHER,
-    payload: weather,
-  }
+export const receiveWeather = weather => dispatch => {
+  dispatch({type: RECEIVE_WEATHER, payload: weather});
+  dispatch({type: CHANGE_DAY, payload: { weekDayTextId: getCurrentDay(), index: 0 }});
 }
 
 export const changeDay = day => {

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import './WeatherList.css';
 
 class WeatherList extends Component {
-
   static propType = {
     data: PropTypes.array.isRequired,
     onDayChange: PropTypes.func.isRequired,
