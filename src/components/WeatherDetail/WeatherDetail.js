@@ -5,7 +5,7 @@ import './WeatherDetail.css';
 
 class WeatherDetail extends Component {
 
-  static propType = {
+  static propTypes = {
     data: PropTypes.array.isRequired,
     currentDay: PropTypes.object.isRequired,
     currentDayWeather: PropTypes.array.isRequired,

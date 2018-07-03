@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import './CurrentCityDisplay.css';
 
 class CurrentCityDisplay extends Component {
-  static propType = {
+  static propTypes = {
     cityName: PropTypes.string.isRequired,
     countryName: PropTypes.string.isRequired,
   }

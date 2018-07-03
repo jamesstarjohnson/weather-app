@@ -6,7 +6,7 @@ import faSpinner from '@fortawesome/fontawesome-free-solid/faSpinner';
 import './Spinner.css';
 
 class Spinner extends Component {
-  static propType = {
+  static propTypes = {
     render: PropTypes.func,
     isLoading: PropTypes.bool.isRequired,
     containerClassName: PropTypes.string,

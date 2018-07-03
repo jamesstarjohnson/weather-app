@@ -4,7 +4,7 @@ import './WeatherCard.css';
 
 class WeatherCard extends Component {
 
-  static propType = {
+  static propTypes = {
     currentDayWeather: PropTypes.array.isRequired,
   }
 

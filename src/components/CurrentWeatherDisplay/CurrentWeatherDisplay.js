@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import './CurrentWeatherDisplay.css';
 
 class CurrentWeatherDisplay extends Component {
-  static propType = {
+  static propTypes = {
     temp: PropTypes.number.isRequired,
     icon: PropTypes.string.isRequired,
   }

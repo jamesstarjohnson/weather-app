@@ -5,7 +5,7 @@ import enhanceWithClickOutside from 'react-click-outside';
 import './CitiesDropdown.css';
 
 class CitiesDropdown extends Component {
-  static propType = {
+  static propTypes = {
     cities: PropTypes.array.isRequired,
     onItemSelect: PropTypes.func.isRequired,
     getCountryName: PropTypes.func.isRequired,

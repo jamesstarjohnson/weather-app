@@ -5,7 +5,7 @@ import Spinner from '../Spinner';
 import './WeatherSearch.css';
 
 class WeatherSearch extends Component {
-  static propType = {
+  static propTypes = {
     onChange: PropTypes.func.isRequired,
     isLoading: PropTypes.bool.isRequired,
     value: PropTypes.string.isRequired,

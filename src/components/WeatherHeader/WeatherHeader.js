@@ -9,7 +9,7 @@ import './WeatherHeader.css';
 
 class WeatherHeader extends Component {
 
-  static propType = {
+  static propTypes = {
     temp: PropTypes.number.isRequired,
     icon: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,

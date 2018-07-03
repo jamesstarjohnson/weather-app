@@ -9,7 +9,7 @@ import Spinner from '../Spinner';
 import './WeatherBody.css';
 
 class WeatherBody extends Component {
-  static propType = {
+  static propTypes = {
     fetchWeather: PropTypes.func.isRequired,
     backgroundWeatherUpdate: PropTypes.func.isRequired,
     cityName: PropTypes.string.isRequired,    
